@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import PageHeader from "@/components/PageHeader";
+import HScroller from "@/components/HScroller";
 import { fmtToPar, cx } from "@/lib/format";
 import { AnimatePresence, motion } from "framer-motion";
 import { tournament, courseHoles, leaderboardEntries } from "@/data/boulder-classic";
@@ -40,7 +41,7 @@ function CardGrid({
   const frontCard = card.slice(0, 9);
   const backCard = card.slice(9, played);
   return (
-    <div className="overflow-x-auto">
+    <div className="hscroll-x overflow-x-auto pb-1">
       <div className="min-w-[760px]">
         <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-gold">{label}</p>
         <table className="w-full border-collapse">
@@ -128,7 +129,7 @@ export default function Scores() {
 
       <section className="mx-auto max-w-[1440px] px-5 pb-28 md:px-10">
         {/* player strip */}
-        <div className="flex gap-2 overflow-x-auto pb-2 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <HScroller label="Players" contentClassName="flex gap-2 pb-3 pt-2">
           {entries.map((e) => (
             <button
               key={e.id}
@@ -147,7 +148,7 @@ export default function Scores() {
               <span className="font-mono text-xs tabular-nums">{fmtToPar(e.total)}</span>
             </button>
           ))}
-        </div>
+        </HScroller>
 
         <AnimatePresence mode="wait">
           {active && (

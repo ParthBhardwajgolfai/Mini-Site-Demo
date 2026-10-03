@@ -161,3 +161,20 @@
 .img-reveal {
   clip-path: inset(0 0 0 0);
 }
+
+/* visible thin horizontal scrollbar for off-canvas scrollers */
+.hscroll-x {
+  scrollbar-width: thin;
+  scrollbar-color: #b08d57 rgba(244, 241, 233, 0.08);
+}
+.hscroll-x::-webkit-scrollbar {
+  height: 6px;
+}
+.hscroll-x::-webkit-scrollbar-track {
+  background: rgba(244, 241, 233, 0.08);
+  border-radius: 8px;
+}
+.hscroll-x::-webkit-scrollbar-thumb {
+  background: #b08d57;
+  border-radius: 8px;
+}
