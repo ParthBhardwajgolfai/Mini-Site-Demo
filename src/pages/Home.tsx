@@ -54,12 +54,15 @@ function Hero() {
           </span>
         </motion.p>
 
-        <h1 className="mt-6 font-serif text-[13vw] font-light leading-[0.98] tracking-tight text-cream sm:text-7xl md:text-8xl lg:text-[7.5rem]">
+        <h1 className="mt-6 font-serif text-[13vw] font-light leading-[1.08] tracking-tight text-cream sm:text-7xl md:text-8xl lg:text-[7.5rem]">
           {headline.map((line, i) => (
-            <span key={i} className="block overflow-hidden">
+            <span
+              key={i}
+              className="block overflow-hidden pb-[0.2em] -mb-[0.28em]"
+            >
               <motion.span
                 className={`block ${i === 1 ? "italic text-gold-soft" : ""}`}
-                initial={{ y: "110%" }}
+                initial={{ y: "120%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.1, delay: 0.45 + i * 0.14, ease: EASE }}
               >
