@@ -12,22 +12,14 @@ const LINKS = [
   { to: "/gallery", label: "Gallery" },
 ];
 
-function Wordmark({ light = true }: { light?: boolean }) {
+function Wordmark() {
   return (
-    <Link to="/" className="group flex items-center gap-3">
-      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden>
-        <circle cx="13" cy="13" r="12" stroke="#B08D57" strokeWidth="1.2" />
-        <path d="M13 5v13" stroke={light ? "#F4F1E9" : "#0B0F0C"} strokeWidth="1.2" />
-        <path d="M13 5.5h7l-2.2 3L20 11.5h-7" fill="#B08D57" />
-        <ellipse cx="13" cy="20.5" rx="4" ry="1.2" fill="#1E4633" />
-      </svg>
-      <span
-        className={`font-mono text-sm font-semibold tracking-[0.28em] ${
-          light ? "text-cream" : "text-ink"
-        }`}
-      >
-        GOLFAI
-      </span>
+    <Link to="/" className="group flex items-center" aria-label="GOLFAI home">
+      <img
+        src="/media/golfai-logo.png"
+        alt="GOLFAI"
+        className="h-7 w-auto transition-opacity duration-300 group-hover:opacity-80 md:h-8"
+      />
     </Link>
   );
 }
