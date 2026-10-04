@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { AnimatePresence, motion } from "framer-motion";
+import PartnerRotator from "@/components/PartnerRotator";
 
 const LINKS = [
   { to: "/leaderboard", label: "Leaderboard" },
@@ -55,7 +56,7 @@ export default function Nav() {
           scrolled ? "glass-nav border-b border-white/5" : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:h-20 md:px-10">
+        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-6 px-5 md:h-20 md:px-10">
           <Wordmark />
           <nav className="hidden items-center gap-7 lg:flex">
             {LINKS.map((l) => (
@@ -72,16 +73,19 @@ export default function Nav() {
               </NavLink>
             ))}
           </nav>
-          <button
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            className="flex h-11 w-11 items-center justify-center lg:hidden"
-          >
-            <div className="space-y-1.5">
-              <span className="block h-px w-6 bg-cream" />
-              <span className="block h-px w-6 bg-cream" />
-            </div>
-          </button>
+          <div className="flex items-center gap-6">
+            <PartnerRotator />
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="flex h-11 w-11 items-center justify-center lg:hidden"
+            >
+              <div className="space-y-1.5">
+                <span className="block h-px w-6 bg-cream" />
+                <span className="block h-px w-6 bg-cream" />
+              </div>
+            </button>
+          </div>
         </div>
       </header>
 

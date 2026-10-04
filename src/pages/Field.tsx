@@ -1,8 +1,15 @@
+import { Link } from "react-router";
 import PageHeader from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { cx } from "@/lib/format";
+import { cx, fmtMoney, fmtToPar } from "@/lib/format";
 import { motion } from "framer-motion";
-import { tournament, fieldPlayers } from "@/data/boulder-classic";
+import {
+  tournament,
+  fieldPlayers,
+  leaderboardEntries,
+  pastResults,
+  prizeMoneyRows,
+} from "@/data/boulder-classic";
 
 const STATUS_STYLES: Record<string, string> = {
   "Made Cut": "text-sprig",
@@ -12,6 +19,9 @@ const STATUS_STYLES: Record<string, string> = {
 
 export default function Field() {
   const t = tournament;
+  const champion = leaderboardEntries[0];
+  const result = pastResults[0];
+  const prizeTop = prizeMoneyRows[0]?.amount ?? 0;
   return (
     <main className="min-h-screen bg-cream text-ink">
       <div className="bg-ink">
@@ -32,6 +42,56 @@ export default function Field() {
             professionals earned their place in the field at Boulder Hills.
           </p>
         </Reveal>
+
+        {champion && result && (
+          <Reveal delay={0.05}>
+            <div className="mt-12 grid gap-8 border border-ink/10 bg-bone p-6 md:grid-cols-[300px_1fr] md:gap-12 md:p-10">
+              <img
+                src="/media/bc26-champion-portrait.jpg"
+                alt={`${champion.player.firstName} ${champion.player.lastName}, champion of the Boulders Classic ${t.edition}`}
+                className="aspect-square w-full border border-ink/10 object-cover object-top"
+                loading="lazy"
+              />
+              <div className="flex flex-col justify-center">
+                <p className="font-mono text-[11px] uppercase tracking-mega text-gold">
+                  The Champion
+                </p>
+                <h2 className="mt-4 font-serif text-4xl font-light leading-tight md:text-6xl">
+                  {champion.player.firstName} {champion.player.lastName}
+                </h2>
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
+                  {champion.player.country} · {champion.strokes} strokes ·{" "}
+                  {fmtToPar(champion.total)} · won by {result.margin}
+                </p>
+                <p className="mt-6 max-w-lg text-sm leading-relaxed text-ink/65">
+                  Rounds of {champion.r1} · {champion.r2} · {champion.r3} · {champion.r4} carried{" "}
+                  {champion.player.lastName} clear of the field at Boulder Hills — the {t.edition}{" "}
+                  title worth {fmtMoney(prizeTop, t.currency)} and a place in PGTI history.
+                </p>
+                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink/45">
+                  Runners-up · {result.runnerUp}
+                </p>
+                <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+                  <Link
+                    to="/scores"
+                    className="group flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-fairway transition-colors hover:text-gold"
+                  >
+                    View the scorecard
+                    <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+                  </Link>
+                  <Link
+                    to="/prize-money"
+                    className="group flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-fairway transition-colors hover:text-gold"
+                  >
+                    Prize money
+                    <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        )}
+
         <div className="mt-12 grid grid-cols-1 gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
           {fieldPlayers.map((p, i) => (
             <motion.div

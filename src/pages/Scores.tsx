@@ -125,6 +125,9 @@ export default function Scores() {
           </>
         }
         meta={t && <><span>{t.course}</span><span>Par {t.par} · {t.yardage.toLocaleString()} yds</span></>}
+        image="/media/bc26-rd4-putt.jpg"
+        imageAlt="Shubhankar Sharma putting during the final round at Boulder Hills"
+        imageCaption="Round 4 · The winning putt"
       />
 
       <section className="mx-auto max-w-[1440px] px-5 pb-28 md:px-10">

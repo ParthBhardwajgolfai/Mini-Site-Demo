@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal, ImageReveal, EditorialHeading } from "@/components/Reveal";
 import LeaderboardTable from "@/components/LeaderboardTable";
+import PartnersStrip from "@/components/PartnersStrip";
 import { fmtDateRange, fmtMoney } from "@/lib/format";
 import {
   tournament,
@@ -20,14 +21,14 @@ function Hero() {
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const t = tournament;
 
-  const headline = ["Where the game", "meets its future."];
+  const headline = ["Four days at Boulder Hills,", "one champion at −25."];
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-ink">
       <motion.div style={{ y: videoY }} className="absolute inset-0 scale-[1.08]">
         <video
           className="h-full w-full object-cover"
           src="/media/hero-loop.mp4"
-          poster="/media/hero-poster.png"
+          poster="/media/bc26-rd1-drive.jpg"
           autoPlay
           muted
           loop
@@ -161,7 +162,11 @@ function ChampionshipIntro() {
             />
             <Reveal delay={0.16}>
               <p className="mt-8 max-w-md text-base leading-relaxed text-ink/70">
-                {t?.description}
+                The DP World PGTI comes to Boulder Hills Golf &amp; Country Club,
+                Hyderabad, for the Boulders Classic — 132 professionals contesting 72
+                holes of stroke play for a prize fund of ₹1 crore. The cut falls to the
+                top 50 and ties after 36 holes; Shubhankar Sharma signed for 263 to
+                finish 25 under par and lift the trophy on April 17.
               </p>
             </Reveal>
             <Reveal delay={0.22}>
@@ -179,13 +184,13 @@ function ChampionshipIntro() {
           </div>
           <div className="lg:col-span-7">
             <ImageReveal
-              src="/media/course-aerial.png"
-              alt="Aerial view of Boulder Hills Golf Club, Hyderabad"
-              className="h-[320px] overflow-hidden md:h-[560px] lg:ml-12"
+              src="/media/bc26-rd2-drive.jpg"
+              alt="Round 2 tee shot on the 1st hole at Boulder Hills Golf Club, Hyderabad"
+              className="aspect-video overflow-hidden lg:ml-12"
             />
             <Reveal delay={0.2}>
               <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.24em] text-ink/45 lg:ml-12">
-                Boulder Hills Golf Club · Hyderabad, Telangana
+                Round 2 · The 1st tee at Boulder Hills G&amp;CC, Hyderabad
               </p>
             </Reveal>
           </div>
@@ -234,10 +239,10 @@ function EditorialQuote() {
     <section ref={ref} className="relative overflow-hidden bg-ink">
       <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-20 md:grid-cols-12 md:px-10 md:py-36">
         <div className="relative md:col-span-4 md:col-start-1">
-          <motion.div style={{ y }} className="relative h-[420px] overflow-hidden md:h-[560px]">
+          <motion.div style={{ y }} className="relative aspect-square overflow-hidden">
             <img
-              src="/media/swing-dusk.png"
-              alt="Golfer silhouetted against the evening sky"
+              src="/media/bc26-rd4-putt.jpg"
+              alt="Shubhankar Sharma putting during the final round at Boulder Hills"
               className="h-full w-full object-cover"
               loading="lazy"
             />
@@ -245,18 +250,18 @@ function EditorialQuote() {
         </div>
         <div className="flex flex-col justify-center md:col-span-7 md:col-start-6">
           <Reveal>
-            <p className="kicker">The Final-Round Test</p>
+            <p className="kicker">The Week in Numbers</p>
           </Reveal>
           <Reveal delay={0.1}>
             <blockquote className="mt-8 font-serif text-3xl font-light leading-[1.2] text-cream md:text-5xl">
-              “Every shot here is a decision.
-              <span className="italic text-gold-soft"> Every decision is data.</span>
-              <span> Every Sunday, a champion.”</span>
+              Four rounds over 7,218 yards of Deccan parkland.
+              <span className="italic text-gold-soft"> A cut of the top 50 and ties.</span>
+              <span> A champion finishing eight shots clear.</span>
             </blockquote>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.24em] text-cream/50">
-              — Boulders Classic · PGTI Tour
+              Boulders Classic 2026 · April 14–17 · Boulder Hills G&amp;CC, Hyderabad
             </p>
           </Reveal>
         </div>
@@ -266,7 +271,7 @@ function EditorialQuote() {
 }
 
 function GalleryStrip() {
-  const items = galleryItems.filter((i) => i.kind === "photo").slice(0, 5);
+  const items = galleryItems.filter((i) => i.type === "photo").slice(0, 5);
   return (
     <section className="bg-cream text-ink">
       <div className="mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
@@ -326,9 +331,9 @@ function TrophyCta() {
   return (
     <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-ink">
       <img
-        src="/media/trophy.png"
-        alt="The Boulders Classic Trophy"
-        className="absolute inset-0 h-full w-full object-cover object-top opacity-80"
+        src="/media/bc26-trophy-presentation.jpg"
+        alt="Shubhankar Sharma receives the Boulders Classic 2026 trophy"
+        className="absolute inset-0 h-full w-full object-cover object-[center_35%] opacity-80"
         loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
@@ -376,6 +381,7 @@ export default function Home() {
       <EditorialQuote />
       <GalleryStrip />
       <TrophyCta />
+      <PartnersStrip />
     </main>
   );
 }

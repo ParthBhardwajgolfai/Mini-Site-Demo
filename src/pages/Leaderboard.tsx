@@ -26,6 +26,9 @@ export default function Leaderboard() {
             <span>Par {t.par}</span>
           </>
         }
+        image="/media/bc26-rd1-drive.jpg"
+        imageAlt="Round 1 tee shot on the 1st hole at Boulder Hills Golf Club"
+        imageCaption="Round 1 · 1st tee, Boulder Hills"
       />
       <section className="mx-auto max-w-[1440px] px-5 pb-24 pt-4 md:px-10 md:pb-32">
         <Reveal>

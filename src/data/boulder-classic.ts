@@ -96,13 +96,33 @@ export interface PastResult {
   runnerUp: string;
 }
 
+export type GalleryCategory =
+  | "Tournament film"
+  | "Round 1"
+  | "Round 2"
+  | "Round 4"
+  | "Winner's moments"
+  | "Press conference"
+  | "The Champion";
+
 export interface GalleryItem {
   id: number;
+  type: "photo" | "video";
   title: string;
-  kind: string;
+  category: GalleryCategory;
+  round: number | null;
   src: string;
-  caption: string;
-  span: string;
+  poster?: string;
+  duration?: string;
+  featured?: boolean;
+  span: "wide" | "tall" | "feature";
+  description: string;
+}
+
+export interface TourPartner {
+  name: string;
+  src: string;
+  tier: "Tour Partner" | "Partner";
 }
 
 
@@ -8378,7 +8398,7 @@ export const prizeMoneyRows: PrizeRow[] = [
     "position": "1",
     "tied": false,
     "sharedBy": 1,
-    "amount": 1800000
+    "amount": 1500000
   },
   {
     "id": 2,
@@ -8551,66 +8571,117 @@ export const pastResults: PastResult[] = [
 export const galleryItems: GalleryItem[] = [
   {
     "id": 1,
-    "title": "Golden Hour at Boulder Hills",
-    "kind": "video",
-    "src": "/media/hero-loop.mp4",
-    "caption": "The final groups chase the evening light home across the Deccan parkland.",
-    "span": "wide"
+    "type": "video",
+    "title": "Round 4 Highlights",
+    "category": "Round 4",
+    "round": 4,
+    "src": "/media/bc26-round4-highlights.mp4",
+    "poster": "/media/bc26-rd4-highlights-poster.jpg",
+    "duration": "4:55",
+    "featured": true,
+    "span": "feature",
+    "description":
+      "The official highlights cut of the final round at Boulder Hills — Shubhankar Sharma's closing 67 and the putt on the 18th that sealed 25 under par."
   },
   {
     "id": 2,
-    "title": "The Course from Above",
-    "kind": "photo",
-    "src": "/media/course-aerial.png",
-    "caption": "Boulder Hills Golf Club winding through rock, broom and bottle-green fairways.",
-    "span": "wide"
+    "type": "photo",
+    "title": "The Official Result",
+    "category": "Winner's moments",
+    "round": 4,
+    "src": "/media/bc26-winner-cheque.png",
+    "span": "wide",
+    "description":
+      "The official PGTI result card — position 1, Shubhankar Sharma, rounds of 66-66-64-67 for 263 strokes, 25 under par and a winner's cheque of ₹15,00,000."
+  },
+  {
+    "id": 10,
+    "type": "photo",
+    "title": "The Trophy Presentation",
+    "category": "Winner's moments",
+    "round": null,
+    "src": "/media/bc26-trophy-presentation.jpg",
+    "span": "wide",
+    "description":
+      "Shubhankar Sharma receives the Boulders Classic trophy and the ₹15,00,000 winner's cheque at Boulder Hills — April 17, 2026, with tournament officials."
   },
   {
     "id": 3,
-    "title": "Into the Evening",
-    "kind": "photo",
-    "src": "/media/swing-dusk.png",
-    "caption": "The last tee shot of the day, sent into a burning Hyderabad sky.",
-    "span": "tall"
-  },
-  {
-    "id": 4,
-    "title": "Dew on the Greens",
-    "kind": "photo",
-    "src": "/media/putt-macro.png",
-    "caption": "Morning rounds at Boulder Hills begin on glass.",
-    "span": "wide"
+    "type": "photo",
+    "title": "Round 1 · The Opening Drive",
+    "category": "Round 1",
+    "round": 1,
+    "src": "/media/bc26-rd1-drive.jpg",
+    "span": "wide",
+    "description":
+      "The first tee at Boulder Hills — 416 yards, par 4, under the tournament branding wall."
   },
   {
     "id": 5,
-    "title": "The Boulders Classic Trophy",
-    "kind": "photo",
-    "src": "/media/trophy.png",
-    "caption": "One hundred thirty-two arrive. One name is engraved.",
-    "span": "tall"
+    "type": "photo",
+    "title": "Round 2 · The Charge",
+    "category": "Round 2",
+    "round": 2,
+    "src": "/media/bc26-rd2-drive.jpg",
+    "span": "wide",
+    "description":
+      "Friday tee shots launch over the Boulder Hills amphitheatre as the cut line takes shape."
   },
   {
     "id": 6,
-    "title": "Out of the Sand",
-    "kind": "photo",
-    "src": "/media/bunker.png",
-    "caption": "The hillside bunkers claim their toll all week.",
-    "span": "wide"
+    "type": "photo",
+    "title": "Round 4 · The Winning Putt",
+    "category": "Round 4",
+    "round": 4,
+    "src": "/media/bc26-rd4-putt.jpg",
+    "span": "tall",
+    "description":
+      "Shubhankar Sharma rolls another one home on the way to a closing 67 and 25 under par."
   },
   {
     "id": 7,
-    "title": "Crowds at the Last",
-    "kind": "photo",
-    "src": "/media/gallery-18th.png",
-    "caption": "The 18th amphitheatre holds its breath on Sunday.",
-    "span": "wide"
+    "type": "photo",
+    "title": "Shubhankar Sharma · Champion",
+    "category": "The Champion",
+    "round": null,
+    "src": "/media/bc26-champion-portrait.jpg",
+    "span": "tall",
+    "description":
+      "263 strokes, 25 under par, an eight-shot victory — the Boulders Classic 2026 champion."
   },
   {
     "id": 8,
-    "title": "Morning on the Fairways",
-    "kind": "photo",
-    "src": "/media/fairway-mist.png",
-    "caption": "Before the roars, the quiet.",
-    "span": "wide"
+    "type": "video",
+    "title": "Boulder Hills, in Motion",
+    "category": "Tournament film",
+    "round": null,
+    "src": "/media/hero-loop.mp4",
+    "poster": "/media/bc26-rd1-drive.jpg",
+    "span": "wide",
+    "description":
+      "Golden hour over the parkland course — the week in motion."
+  },
+  {
+    "id": 9,
+    "type": "photo",
+    "title": "Kapil Dev at The Boulders Classic",
+    "category": "Press conference",
+    "round": null,
+    "src": "/media/bc26-kapil-dev.jpg",
+    "span": "wide",
+    "description":
+      "PGTI President and former India cricket captain Kapil Dev addresses the winner's press conference at Boulder Hills."
   }
+];
+
+export const tourPartners: TourPartner[] = [
+  { "name": "DP World", "src": "/media/partners/dp-world.png", "tier": "Tour Partner" },
+  { "name": "Amul", "src": "/media/partners/amul.webp", "tier": "Tour Partner" },
+  { "name": "Axis Bank", "src": "/media/partners/axis-bank.png", "tier": "Tour Partner" },
+  { "name": "HCL", "src": "/media/partners/hcl-trimmed.webp", "tier": "Tour Partner" },
+  { "name": "Enerlyte", "src": "/media/partners/enerlyte.png", "tier": "Tour Partner" },
+  { "name": "Air India Maharaja Club", "src": "/media/partners/air-india.png", "tier": "Tour Partner" },
+  { "name": "Kalyani", "src": "/media/partners/kalyani-trimmed.png", "tier": "Tour Partner" },
+  { "name": "GolfPlus Monthly", "src": "/media/partners/golfplus-monthly.png", "tier": "Partner" },
+  { "name": "Golf Design India", "src": "/media/partners/golf-design-india.png", "tier": "Partner" }
 ];

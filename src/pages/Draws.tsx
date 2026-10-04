@@ -25,6 +25,9 @@ export default function Draws() {
           </>
         }
         meta={<span>Official draw · All times local · Tees 1 &amp; 10</span>}
+        image="/media/bc26-rd2-drive.jpg"
+        imageAlt="Round 2 tee shot on the 1st hole at Boulder Hills Golf Club"
+        imageCaption="Round 2 · 1st tee, Boulder Hills"
       />
       <section className="mx-auto max-w-[1100px] px-5 pb-28 md:px-10">
         <Reveal>
