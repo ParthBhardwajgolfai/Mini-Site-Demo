@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal, ImageReveal, EditorialHeading } from "@/components/Reveal";
 import LeaderboardTable from "@/components/LeaderboardTable";
 import PartnersStrip from "@/components/PartnersStrip";
-import { fmtDateRange, fmtMoney } from "@/lib/format";
+import { cx, fmtDateRange, fmtMoney } from "@/lib/format";
 import {
   tournament,
   leaderboardEntries,
@@ -15,6 +15,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const [filmReady, setFilmReady] = useState(false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
@@ -25,14 +26,19 @@ function Hero() {
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[560px] overflow-hidden bg-ink">
       <motion.div style={{ y: videoY }} className="absolute inset-0 scale-[1.08]">
+        {/* No poster: the hero starts on the dark ink background and the film
+            fades in once playback begins — no image swap on reload. */}
         <video
-          className="h-full w-full object-cover"
           src="/media/hero-loop.mp4"
-          poster="/media/bc26-rd1-drive.jpg"
           autoPlay
           muted
           loop
           playsInline
+          onPlaying={() => setFilmReady(true)}
+          className={cx(
+            "absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms]",
+            filmReady ? "opacity-100" : "opacity-0",
+          )}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/25 to-ink" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />

@@ -8656,7 +8656,6 @@ export const galleryItems: GalleryItem[] = [
     "category": "Tournament film",
     "round": null,
     "src": "/media/hero-loop.mp4",
-    "poster": "/media/bc26-rd1-drive.jpg",
     "span": "wide",
     "description":
       "Golden hour over the parkland course — the week in motion."

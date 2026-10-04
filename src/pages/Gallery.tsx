@@ -27,6 +27,7 @@ function MediaTile({
   className?: string;
 }) {
   const square = item.src.includes("portrait") || item.src.includes("rd4-putt");
+  const [filmPlaying, setFilmPlaying] = useState(false);
   return (
     <motion.button
       onClick={onOpen}
@@ -37,15 +38,22 @@ function MediaTile({
       className={cx("group relative overflow-hidden border border-white/10 text-left", className)}
     >
       {item.type === "video" ? (
-        <video
-          src={item.src}
-          poster={item.poster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="aspect-video h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
-        />
+        <span className="relative block aspect-video w-full transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]">
+          {/* Autoplaying film: starts on the dark tile background and fades in
+              once playback begins — no poster swap. */}
+          <video
+            src={item.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            onPlaying={() => setFilmPlaying(true)}
+            className={cx(
+              "absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms]",
+              filmPlaying ? "opacity-100" : "opacity-0",
+            )}
+          />
+        </span>
       ) : (
         <img
           src={item.src}
@@ -223,7 +231,7 @@ export default function Gallery() {
         {film && (
           <div className="mt-20">
             <SectionHeading kicker="Tournament film" title="The week in motion" />
-            <MediaTile item={film} onOpen={() => setActive(film.id)} />
+            <MediaTile item={film} onOpen={() => setActive(film.id)} className="w-full" />
           </div>
         )}
       </section>
