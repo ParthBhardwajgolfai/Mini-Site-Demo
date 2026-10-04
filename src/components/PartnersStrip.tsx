@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { tourPartners } from "@/data/boulder-classic";
 
 /**
@@ -36,6 +37,15 @@ export default function PartnersStrip() {
             Partners
           </p>
           {row(partners)}
+        </div>
+        <div className="mt-12 text-center">
+          <Link
+            to="/tour-partners"
+            className="group inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-ink/60 transition-colors duration-300 hover:text-gold"
+          >
+            Meet our tour partners
+            <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+          </Link>
         </div>
       </div>
     </section>

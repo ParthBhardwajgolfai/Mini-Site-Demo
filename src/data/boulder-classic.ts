@@ -123,6 +123,14 @@ export interface TourPartner {
   name: string;
   src: string;
   tier: "Tour Partner" | "Partner";
+  /** Partnership role shown on the card, e.g. "Hydration Partner". */
+  role?: string;
+  /** Short company profile (featured partners may carry "\n\n" paragraphs). */
+  description?: string;
+  /** Official partner website. */
+  link?: string;
+  /** Featured partner rendered as its own spotlight band. */
+  featured?: boolean;
 }
 
 
@@ -8674,13 +8682,84 @@ export const galleryItems: GalleryItem[] = [
 ];
 
 export const tourPartners: TourPartner[] = [
-  { "name": "DP World", "src": "/media/partners/dp-world.png", "tier": "Tour Partner" },
-  { "name": "Amul", "src": "/media/partners/amul.webp", "tier": "Tour Partner" },
-  { "name": "Axis Bank", "src": "/media/partners/axis-bank.png", "tier": "Tour Partner" },
-  { "name": "HCL", "src": "/media/partners/hcl-trimmed.webp", "tier": "Tour Partner" },
-  { "name": "Enerlyte", "src": "/media/partners/enerlyte.png", "tier": "Tour Partner" },
-  { "name": "Air India Maharaja Club", "src": "/media/partners/air-india.png", "tier": "Tour Partner" },
-  { "name": "Kalyani", "src": "/media/partners/kalyani-trimmed.png", "tier": "Tour Partner" },
-  { "name": "GolfPlus Monthly", "src": "/media/partners/golfplus-monthly.png", "tier": "Partner" },
-  { "name": "Golf Design India", "src": "/media/partners/golf-design-india.png", "tier": "Partner" }
+  {
+    name: "DP World",
+    src: "/media/partners/dp-world.png",
+    tier: "Tour Partner",
+    role: "Title Partner · DP World PGTI Tour",
+    description:
+      "DP World is reshaping the future of global trade to improve lives everywhere — operating across six continents with a team of over 125,000 employees, combining global infrastructure and local expertise to deliver seamless supply chain solutions.\n\nIts global sports partnerships in golf, cricket, Formula 1 and sailing — from delivering SailGP to supporting the ICC T20 Cricket World Cup and The Ryder Cup — showcase its leadership in supply chain transformation.",
+    link: "https://www.dpworld.com/en",
+    featured: true
+  },
+  {
+    name: "Amul",
+    src: "/media/partners/amul.webp",
+    tier: "Tour Partner",
+    role: "Tour Partner",
+    description:
+      "India's largest food brand and the eighth-largest dairy company globally — the household name that helped India become the world's largest milk producer, playing a pivotal role in enhancing the tour's brand presence nationwide.",
+    link: "https://amul.com"
+  },
+  {
+    name: "Axis Bank",
+    src: "/media/partners/axis-bank.png",
+    tier: "Tour Partner",
+    role: "Tour Partner",
+    description:
+      "One of the largest private sector banks in India, offering the entire spectrum of financial services to large and mid-corporates, SMEs, agriculture and retail businesses across more than 6,100 domestic branches.",
+    link: "https://www.axisbank.com"
+  },
+  {
+    name: "HCL",
+    src: "/media/partners/hcl-trimmed.webp",
+    tier: "Tour Partner",
+    role: "Tour Partner",
+    description:
+      "Founded in 1976 as one of India's original IT garage start-ups — a pioneer of modern computing, today a presence across technology, healthcare and talent management solutions generating annual revenues of over US$14.8 billion.",
+    link: "https://www.hcl.com"
+  },
+  {
+    name: "Enerlyte",
+    src: "/media/partners/enerlyte.png",
+    tier: "Tour Partner",
+    role: "Hydration Partner",
+    description:
+      "A hydration and wellness brand from Amrutanjan Healthcare, a trusted Indian company with a legacy spanning over 130 years — keeping golfers refreshed, focused and ready to perform on and off the course.",
+    link: "https://www.amrutanjan.com/food-beverage.html"
+  },
+  {
+    name: "Air India Maharaja Club",
+    src: "/media/partners/air-india.png",
+    tier: "Tour Partner",
+    role: "Tour Partner",
+    description:
+      "Spearheading a new era of Indian aviation — a story that began in 1932 when JRD Tata piloted the airline's inaugural flight. Today the group operates over 300 aircraft to destinations across five continents, committed to being a world-class global airline with an Indian heart.",
+    link: "https://www.airindia.com/in/en/maharaja-club.html"
+  },
+  {
+    name: "Kalyani",
+    src: "/media/partners/kalyani-trimmed.png",
+    tier: "Tour Partner",
+    role: "Tour Partner",
+    description:
+      "Bharat Forge, part of the USD 3.5 billion Kalyani Group, is a global leader in high-performance components across sectors such as automotive, railways, defence, aerospace, marine and oil & gas.",
+    link: "https://www.bharatforge.com"
+  },
+  {
+    name: "GolfPlus Monthly",
+    src: "/media/partners/golfplus-monthly.png",
+    tier: "Partner",
+    role: "Media Partner",
+    description: "India's dedicated golf monthly — the game's stories, in print and online.",
+    link: "https://www.golfplusmonthly.com/"
+  },
+  {
+    name: "Golf Design India",
+    src: "/media/partners/golf-design-india.png",
+    tier: "Partner",
+    role: "Media Partner",
+    description: "The definitive voice of golf course design and development in India.",
+    link: "https://golfdesignindia.com/"
+  }
 ];

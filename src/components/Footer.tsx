@@ -31,6 +31,7 @@ export default function Footer() {
               <li><Link className="link-underline hover:text-cream" to="/field">Field</Link></li>
               <li><Link className="link-underline hover:text-cream" to="/results">Past Results</Link></li>
               <li><Link className="link-underline hover:text-cream" to="/prize-money">Prize Money</Link></li>
+              <li><Link className="link-underline hover:text-cream" to="/tour-partners">Tour Partners</Link></li>
             </ul>
           </div>
           <div>

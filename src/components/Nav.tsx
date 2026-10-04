@@ -11,6 +11,7 @@ const LINKS = [
   { to: "/results", label: "Results" },
   { to: "/prize-money", label: "Prize Money" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/tour-partners", label: "Partners" },
 ];
 
 function Wordmark() {

@@ -12,6 +12,7 @@ import Scores from "@/pages/Scores";
 import Results from "@/pages/Results";
 import PrizeMoney from "@/pages/PrizeMoney";
 import Gallery from "@/pages/Gallery";
+import TourPartners from "@/pages/TourPartners";
 
 function PageTransition({ children }: { children: ReactNode }) {
   return (
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/results" element={<PageTransition><Results /></PageTransition>} />
           <Route path="/prize-money" element={<PageTransition><PrizeMoney /></PageTransition>} />
           <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
+          <Route path="/tour-partners" element={<PageTransition><TourPartners /></PageTransition>} />
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>
